@@ -29,7 +29,10 @@ function UserInput({ onPost }: UserInputProps) {
   };
 
   const handlePostClick = () => {
-    const userName = userValue.trim() === "" ? "Anonymous" : userValue;
+    const userName =
+      userValue.trim() === "(leave blank to be anonymous)"
+        ? "Anonymous"
+        : userValue;
 
     if (messageValue.trim() === "") {
       return;
