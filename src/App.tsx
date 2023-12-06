@@ -1,8 +1,9 @@
-import { Paper, Typography } from "@mui/material";
+import { Button, Paper, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Message } from "./Message";
 import UserInput from "./UserInput";
 import io from "socket.io-client";
+import PaginationButtons from "./PaginationButtons";
 
 const socket = io("https://c4c-messages-5b86498aee2e.herokuapp.com/");
 
@@ -12,8 +13,8 @@ function App() {
     fontSize: "55px",
     fontWeight: "bold",
     color: "white",
-    paddingBottom: 80,
-    paddingTop: 80,
+    paddingBottom: 50,
+    paddingTop: 50,
   };
 
   const [messages, setMessages] = useState<Message[]>([]);
@@ -39,6 +40,21 @@ function App() {
     };
   }, [socket]);
 
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const totalPages = Math.ceil(messages.length / 5);
+  const startIndex = (currentPage - 1) * 5;
+  const endIndex = startIndex + 5;
+  const messagesToDisplay = messages.slice(startIndex, endIndex);
+
+  const handlePreviousPage = () => {
+    setCurrentPage((prev) => Math.max(prev - 1, 1));
+  };
+
+  const handleNextPage = () => {
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+  };
+
   return (
     <div
       className="App"
@@ -58,24 +74,55 @@ function App() {
       <Paper
         elevation={5}
         style={{
-          padding: "15px",
+          padding: "10px",
           borderRadius: "15px",
           background: "white",
-          height: "60%",
+          height: "70%",
           width: "80%",
         }}
       >
         <UserInput onPost={addMessage} />
-        {messages.map((message, index) => (
+        {messagesToDisplay.map((message, index) => (
           <div key={index}>
-            <Typography>{message.user}</Typography>
-            <Typography>{message.message}</Typography>
-            <Typography>
+            <Typography
+              fontSize="14px"
+              marginLeft={3}
+              style={{ marginTop: index === 0 ? "30px" : 0 }}
+              color="black"
+            >
+              {message.user}
+            </Typography>
+            <Typography fontSize="14px" marginLeft={3} color="gray">
+              {message.message}
+            </Typography>
+            <Typography
+              fontSize="12px"
+              marginLeft={3}
+              marginBottom={1}
+              color="gray"
+            >
               {message.time ? message.time.toString() : "N/A"}
             </Typography>
-            <hr />
+            <div
+              style={{
+                width: "98%",
+                height: "1px",
+                backgroundColor: "lightgray", // Adjust the color as needed
+                marginBottom: "8px", // Adjust the spacing between messages
+                marginLeft: "10px",
+              }}
+            />
           </div>
         ))}
+
+        {messages.length > 0 && (
+          <PaginationButtons
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPreviousPage={handlePreviousPage}
+            onNextPage={handleNextPage}
+          />
+        )}
       </Paper>
     </div>
   );

@@ -12,7 +12,7 @@ function UserInput({ onPost }: UserInputProps) {
 
   const labelStyle = {
     fontSize: "17px",
-    color: "gray",
+    color: "black",
     marginTop: 15,
   };
 
@@ -45,26 +45,28 @@ function UserInput({ onPost }: UserInputProps) {
     <div className="TextField">
       <div
         className="UserName"
-        style={{ display: "flex", marginBottom: 5, marginLeft: 20 }}
+        style={{ display: "flex", marginBottom: 10, marginLeft: 20 }}
       >
-        <Typography style={labelStyle}>Your name:</Typography>
-        <TextField
-          sx={{ m: 1, width: "45ch", marginBottom: "0px" }}
-          id="outlined-basic"
-          variant="outlined"
-          color="secondary"
-          inputProps={{ maxLength: 128 }}
-          value={userValue}
-          onChange={handleUserChange}
-          size="small"
-          label="(leave blank to be anonymous)"
-        />
+        <Typography style={labelStyle}>Name:</Typography>
+        <div style={{ marginLeft: "25px" }}>
+          <TextField
+            sx={{ m: 1, width: "45ch", marginBottom: "0px" }}
+            id="outlined-basic"
+            variant="outlined"
+            color="secondary"
+            inputProps={{ maxLength: 128 }}
+            value={userValue}
+            onChange={handleUserChange}
+            size="small"
+            label="(leave blank to be anonymous)"
+          />
+        </div>
       </div>
       <div
         className="UserText"
         style={{ display: "flex", marginBottom: 5, marginLeft: 20 }}
       >
-        <Typography style={labelStyle}>Your message:</Typography>
+        <Typography style={labelStyle}>Message:</Typography>
         <TextField
           sx={{ m: 1, width: "110ch", marginTop: "0px" }}
           id="outlined-basic"
@@ -75,19 +77,21 @@ function UserInput({ onPost }: UserInputProps) {
           onChange={handleMessageValue}
           size="small"
         />
-        <Button
-          style={{
-            borderRadius: 15,
-            backgroundColor: "#fab5d1",
-            fontSize: "16px",
-            marginTop: "10px",
-            marginLeft: "10px",
-          }}
-          variant="contained"
-          onClick={handlePostClick}
-        >
-          Post
-        </Button>
+        <div style={{ marginBottom: "5px" }}>
+          <Button
+            style={{
+              borderRadius: 10,
+              backgroundColor: "#fab5d1",
+              fontSize: "16px",
+              marginLeft: "10px",
+              marginRight: "10px",
+            }}
+            variant="contained"
+            onClick={handlePostClick}
+          >
+            Post
+          </Button>
+        </div>
       </div>
     </div>
   );
