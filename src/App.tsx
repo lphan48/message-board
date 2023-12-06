@@ -4,7 +4,7 @@ import { Message } from "./Message";
 import UserInput from "./UserInput";
 import io from "socket.io-client";
 
-const socket = io("http://localhost:3001");
+const socket = io("https://c4c-messages-5b86498aee2e.herokuapp.com/");
 
 function App() {
   const titleStyle = {
