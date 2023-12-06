@@ -26,39 +26,41 @@ const PaginationButtons: React.FC<PaginationButtonsProps> = ({
         alignItems: "center",
       }}
     >
-      <Button
-        style={{
-          borderRadius: 10,
-          backgroundColor: "white",
-          fontSize: "16px",
-          marginRight: 20,
-          fontWeight: "bold",
-          padding: "3px",
-          border: "2px solid #fab5d1",
-          color: "#fab5d1",
-        }}
-        variant="contained"
-        onClick={onPreviousPage}
-        disabled={currentPage === 1}
-      >
-        {"<"}
-      </Button>
-      <Button
-        variant="contained"
-        onClick={onNextPage}
-        disabled={currentPage === totalPages}
-        style={{
-          borderRadius: 10,
-          backgroundColor: "white",
-          fontSize: "16px",
-          fontWeight: "bold",
-          padding: "3px",
-          border: "2px solid #fab5d1",
-          color: "#fab5d1",
-        }}
-      >
-        {">"}
-      </Button>
+      {currentPage > 1 && (
+        <Button
+          style={{
+            borderRadius: 10,
+            backgroundColor: "white",
+            fontSize: "16px",
+            marginRight: 20,
+            fontWeight: "bold",
+            padding: "3px",
+            border: "2px solid #fab5d1",
+            color: "#fab5d1",
+          }}
+          variant="contained"
+          onClick={onPreviousPage}
+        >
+          {"<"}
+        </Button>
+      )}
+      {currentPage < totalPages && (
+        <Button
+          variant="contained"
+          onClick={onNextPage}
+          style={{
+            borderRadius: 10,
+            backgroundColor: "white",
+            fontSize: "16px",
+            fontWeight: "bold",
+            padding: "3px",
+            border: "2px solid #fab5d1",
+            color: "#fab5d1",
+          }}
+        >
+          {">"}
+        </Button>
+      )}
     </div>
   );
 };
