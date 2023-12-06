@@ -7,6 +7,9 @@ const sqlite3 = require('sqlite3').verbose();
 const app = express();
 app.use(cors());
 
+// serves static files from the React app
+app.use(express.static(path.join(__dirname, 'client/build')));
+
 // creates the server and socket
 const server = http.createServer(app)
 const io = new Server(server, {
@@ -65,6 +68,12 @@ io.on("connection", (socket) => {
         });
     });
 })
+
+// catch-all route that serves React app
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+});
+
 
 server.listen(process.env.PORT || 3001, () => {
     console.log("server is running! :D")
