@@ -45,7 +45,7 @@ function App() {
   const totalPages = Math.ceil(messages.length / 5);
   const startIndex = (currentPage - 1) * 5;
   const endIndex = startIndex + 5;
-  const messagesToDisplay = messages.slice(startIndex, endIndex);
+  const messagesToDisplay = messages.slice(startIndex, endIndex).reverse();
 
   const handlePreviousPage = () => {
     setCurrentPage((prev) => Math.max(prev - 1, 1));
