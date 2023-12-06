@@ -4,7 +4,7 @@ import { Message } from "./Message";
 import UserInput from "./UserInput";
 import io from "socket.io-client";
 
-const socket = io("http://localhost:3001");
+const socket = io();
 
 function App() {
   const titleStyle = {
