@@ -5,6 +5,7 @@ import UserInput from "./UserInput";
 import io from "socket.io-client";
 import PaginationButtons from "./PaginationButtons";
 
+// connect to remote heroku server
 const socket = io("https://c4c-messages-5b86498aee2e.herokuapp.com/");
 
 function App() {
@@ -70,7 +71,7 @@ function App() {
         alignItems: "center",
       }}
     >
-      <Typography style={titleStyle}>The Community Chat</Typography>
+      <Typography style={titleStyle}>The Community Notepad</Typography>
       <Paper
         elevation={5}
         style={{
