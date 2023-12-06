@@ -9,7 +9,7 @@ const app = express();
 app.use(cors());
 
 // serves static files from the React app
-app.use(express.static(path.join(__dirname, 'client/build')));
+app.use(express.static(path.join(__dirname, 'build')));
 
 // creates the server and socket
 const server = http.createServer(app)
@@ -73,7 +73,7 @@ io.on("connection", (socket) => {
 // catch-all route that serves React app
 app.get('*', (req, res) => {
     console.log('route accessed');
-    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
 
