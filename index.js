@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path')
 const http = require('http');
 const { Server } = require("socket.io");
 const cors = require("cors");
@@ -71,6 +72,7 @@ io.on("connection", (socket) => {
 
 // catch-all route that serves React app
 app.get('*', (req, res) => {
+    console.log('route accessed');
     res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
 });
 
