@@ -29,6 +29,12 @@ function UserInput({ onPost }: UserInputProps) {
   };
 
   const handlePostClick = () => {
+    const userName = userValue.trim() === "" ? "Anonymous" : userValue;
+
+    if (messageValue.trim() === "") {
+      return;
+    }
+
     const newMessage: Message = {
       user: userValue,
       message: messageValue,

@@ -89,6 +89,7 @@ function App() {
               marginLeft={3}
               style={{ marginTop: index === 0 ? "30px" : 0 }}
               color="black"
+              fontWeight={"medium"}
             >
               {message.user}
             </Typography>
