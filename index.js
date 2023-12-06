@@ -11,7 +11,7 @@ app.use(cors());
 const server = http.createServer(app)
 const io = new Server(server, {
     cors: {
-        origin: "https://c4c-messages-5b86498aee2e.herokuapp.com/",
+        origin: "http://localhost:3000",
         methods: ["GET", "POST"],
     },
 })
