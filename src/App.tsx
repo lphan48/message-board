@@ -28,11 +28,11 @@ function App() {
   // listens for incoming messages from the server
   useEffect(() => {
     socket.on("receive_message", (newMessage) => {
-      setMessages((prevMessages) => [...prevMessages, newMessage]);
+      setMessages((prevMessages) => [newMessage, ...prevMessages]);
     });
 
     socket.on("all_messages", (messages) => {
-      setMessages(messages);
+      setMessages(messages.reverse());
     });
 
     return () => {
@@ -46,7 +46,7 @@ function App() {
   const totalPages = Math.ceil(messages.length / 5);
   const startIndex = (currentPage - 1) * 5;
   const endIndex = startIndex + 5;
-  const messagesToDisplay = messages.slice(startIndex, endIndex).reverse();
+  const messagesToDisplay = messages.slice(startIndex, endIndex);
 
   const handlePreviousPage = () => {
     setCurrentPage((prev) => Math.max(prev - 1, 1));
