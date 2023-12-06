@@ -73,7 +73,7 @@ io.on("connection", (socket) => {
 // catch-all route that serves React app
 app.get('*', (req, res) => {
     console.log('route accessed');
-    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+    res.send('<h1>Hello world</h1>');
 });
 
 
