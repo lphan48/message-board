@@ -1,46 +1,45 @@
-# Getting Started with Create React App
+# The Community Notepad 
+## Overview
+This project is a global anonymous message board for the Code4Community family to interact, meet new people, and ask each other questions! By following the intructions below to either visit the live site or run the program locally, users can post messages to the board both anonymously and through a customized name. Users can also see previous posts. 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Components
+#### App.tsx
+The App.tsx file contains the overall application. It first establishes a connection to the server, retrieving all previous messages upon connection and updating the page to reflect new ones. It then imports and passes handler functions as props to two smaller components, UserInput.tsx and PaginationButtons.tsx. When these smaller components are changed, App.tsx adjusts the UI and emits messages to the server accordingly.
 
-## Available Scripts
+#### UserInput.tsx
+UserInput.tsx uses useState to keep track of the name and message typed by the user. When the user presses the 'Post' button, UserInput creates a Message and calls the prop passed in by App.tsx, resulting in that message being sent to the server. If the user doesn't type a name, the name will be stored as 'Anonymous', and if the user doesn't type a message, nothing will happen. The message text field stops taking in input when the user types more than 128 characters.
 
-In the project directory, you can run:
+#### PaginationButtons.tsx
+PaginationButtons displays forward and backward buttons for the user to view more messages if they exist. When these buttons are clicked, the current page is updated. 
 
-### `npm start`
+#### Index.js
+Index.js uses Express and Socket.io connect to the SQLite database and listen to messages from clients. When a client first connects, Index.js sends all previous messages in the table. When it receives a message from the client, it stores it in the table and then emits it to all clients. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Requirements and Future Expansions
+The Community Notepad allows users to type and post messages. By capping the text field at 128 characters and not posting if the message is empty, it prevents users from typing nonexistent or extremely long messages. By ordering the messages based on the time they are sent, users can see messages from most to least recent and use the pagination buttons to toggle between pages. Using a server and a socket allows multiple different users to post to the same board and see each new messages in real time. 
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Although the server does connect to a SQLite server, it is not fully functional and loses new messages when the server is restarted. The prioritized next step is to fix this error so that all messages persist upon server restart. 
 
-### `npm test`
+## Running the Application
+The Community Notepad is hosted at the following url: https://c4c-messages-5b86498aee2e.herokuapp.com/ 
+* NOTE: Running it locally restarts the server and removes all messages besides the first few. This will be corrected in the future.
+  
+To run the program locally, run the following commands:
+#### Clone the repo:
+   
+   ```git clone https://github.com/lphan48/message-board```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#### Navigate to the directory:
+   
+   ```cd message-board```
 
-### `npm run build`
+#### Install dependencies:
+   
+   ```npm install```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### Run the application:
+   
+   ```npm start```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+  
+  
