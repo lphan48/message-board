@@ -1,4 +1,4 @@
-# The Community Notepad 
+# The Community Notepad 🫶🏻📝
 ## Overview
 This project is a global anonymous message board for the Code4Community family to interact, meet new people, and ask each other questions! By following the intructions below to either visit the live site or run the program locally, users can post messages to the board both anonymously and through a customized name. Users can also see previous posts. 
 
@@ -22,7 +22,7 @@ Although the server does connect to a SQLite server, it is not fully functional 
 
 ## Running the Application
 The Community Notepad is hosted at the following url: https://c4c-messages-5b86498aee2e.herokuapp.com/ 
-* NOTE: Running it locally restarts the server and removes all messages besides the first few. This will be corrected in the future.
+* NOTE: Running it locally restarts the server and removes all messages besides the first few. This will be corrected in the future, but to prevent message loss, it is recommended to use the link above.
   
 To run the program locally, run the following commands:
 #### Clone the repo:
